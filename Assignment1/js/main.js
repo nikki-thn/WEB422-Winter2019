@@ -8,78 +8,50 @@
 * Student ID: 124314173 
 * Date: January 11, 2019
 *
+* Heroku: https://infinite-plains-57503.herokuapp.com/employees
 ********************************************************************************/ 
 
 window.onload = function(){
+//$(function() { 
     
     event.preventDefault();
 
-    // Selectors:  
-    let well = $( ".well" );
-
     $("#teams-menu").on("click", function(){ 
-   
-        $.ajax({
-            url: "http://localhost:8081/teams", 
-            type: "GET",
-            contentType: "application/json"
-        })
-        .done(function (teams) {
-            well.empty();
-            well.append('<h3>Teams</h3>');
-            well.append('<p>' + JSON.stringify(teams) + '</p>');       
-        })
-        .fail(function (err) {
-            console.log("error: " + err.statusText);
-        });
+        makeAjaxCall("teams");
     });
 
     $("#employees-menu").on("click", function(){ 
-        $.ajax({
-            url: "http://localhost:8081/employees", 
-            contentType: "application/json"
-        })
-        .done(function (employees) {
-            console.log(employees); 
-            well.empty();
-            well.append('<h3>Employees</h3>');
-            well.append('<p>' + JSON.stringify(employees) + '</p>');      
-        })
-        .fail(function (err) {
-            console.log("error: " + err.statusText);
-        });
+        makeAjaxCall("employees");
     });
 
     $("#projects-menu").on("click", function(){ 
-        $.ajax({
-            url: "http://localhost:8081/projects", 
-            type: "GET",
-            contentType: "application/json"
-        })
-        .done(function (projects) {
-            well.empty();
-            well.append('<h3>Projects</h3>');
-            well.append('<p>' + JSON.stringify(projects) + '</p>');      
-        })
-        .fail(function (err) {
-            console.log("error: " + err.statusText);
-        });
+        makeAjaxCall("projects");
     });
 
     $("#positions-menu").on("click", function(){ 
-        $.ajax({
-            url: "http://localhost:8081/positions", // change "your teams api url" to your Teams API url on Heroku
-            type: "GET",
-            contentType: "application/json"
-        })
-        .done(function (positions) {
-            well.empty();
-            well.append('<h3>Positions</h3>');
-            well.append('<p>' + JSON.stringify(positions) + '</p>');     
-        })
-        .fail(function (err) {
-            console.log("error: " + err.statusText);
-        });
+        makeAjaxCall("positions");
     });
-          
+        
 }
+
+function makeAjaxCall(collection){
+
+    let well = $( ".well" ); //select the well to append
+    // Heroku API url
+    var herokuUrl = "https://infinite-plains-57503.herokuapp.com/" + collection;
+    
+    $.ajax({
+        url: herokuUrl, 
+        type: "GET",
+        contentType: "application/json"
+    })
+    .done(function (data) {
+        well.empty();
+        well.append('<h3>' + collection.charAt(0).toUpperCase() + collection.substr(1) + '</h3>');
+        well.append('<p>' + JSON.stringify(data) + '</p>');     
+    })
+    .fail(function (err) {
+        console.log("error: " + err.statusText);
+    });
+}
+//});
