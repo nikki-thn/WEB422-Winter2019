@@ -3,31 +3,3 @@
     overflow-y: scroll;
 }
 
-.input-group-addon {
-    background-color: gray;
-}
-
-.row {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    height: 100px;
-}
-
-.container {
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn {
-    display: inline;
-}
-
