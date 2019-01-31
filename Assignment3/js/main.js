@@ -6,46 +6,51 @@
 *
 * Name: Nikki Truong 
 * Student ID: 124314173 
-* Date: January 25, 2019
+* Date: January 31, 2019
 *
-* Heroku: https://infinite-plains-57503.herokuapp.com/employees
+* Heroku: https://lit-fortress-10601.herokuapp.com/employees
 ********************************************************************************/ 
 
 var employeesModel = []; 
 
 $(function() { 
 
-    initializeEmployeesModel();
+    initializeEmployeesModel(); //getting data
 
+    //Handle event when user start searching
     $("#employee-search").on("keyup", function(event){ 
         event.preventDefault();
         getFilteredEmployeesModel(this.value);
     });
 
-    $('.bootstrap-header-table').on('click', '.body-row', function() {
+    //Handle event when a table row is clicked
+    $('.bootstrap-header-table').on('click', '.body-row', function(event)  {
 
-        let tempEmp = getEmployeeModelById("5997456604a898b529b5ed40");
-        alert(tempEmp);
+        event.preventDefault();
+        let id = $(this).attr('data-id');
+        let tempEmp = getEmployeeModelById(id);
 
-        // let fullName = tempEmp.FirstName + " " + tempEmp.LastName;
-        // let mDate = moment(tempEmp.HireDate);
-        // tempEmp.HireDate = mDate.format("LLL");
+        let fullName = tempEmp[0].FirstName + " " + tempEmp[0].LastName; //get full name of employee
+        let mDate = moment(tempEmp[0].HireDate); //to format hiredate
+        tempEmp[0].HireDate = mDate.format("LL"); //set format
 
-        // let modalTemp = _.template('<strong>Address: </strong><%- employee.AddressStreet %> <%- employee.AddressCity %>, <%- employee.AddressState %> <%- employee.AddressZip %> <br/>' +
-        //     '<strong>Phone Number: </strong><%- employee.PhoneNum %> ext: <%- employee.Extension %> <br/>' +
-        //     '<strong>Hire Date: </strong><%- employee.HireDate %>');
+        //Template for modal body
+        let modalTemp = _.template('<strong>Address: </strong><%- employee.AddressStreet %> <%- employee.AddressCity %>, <%- employee.AddressState %> <%- employee.AddressZip %> <br/>' +
+            '<strong>Phone Number: </strong><%- employee.PhoneNum %> ext: <%- employee.Extension %> <br/>' +
+            '<strong>Hire Date: </strong><%- employee.HireDate %>');
+        let empModalBody = modalTemp({ 'employee': tempEmp[0] });
 
-        // let empModalBody = modalTemp({ 'employee': copy });
-        showGenericModal("jgxjfgxf", "hgfjhfsjd");
+        //call method to insert title & body to modal
+        showGenericModal(fullName, empModalBody);
     });
 
 });   
 
-
+//Getting data from Heroku through Ajax call
 function initializeEmployeesModel() {
 
     $.ajax({
-        url: "https://infinite-plains-57503.herokuapp.com/employees", 
+        url: "https://lit-fortress-10601.herokuapp.com/employees", 
         type: "GET",
         contentType: "application/json"
     })
@@ -55,15 +60,17 @@ function initializeEmployeesModel() {
         refreshEmployeeRows(employeesModel);
     })
     .fail(function (err) {
+        //If error display message
         console.log("error: " + err.statusText);
-        showGenericModal("Error", "Undble to get Employees");
+        showGenericModal("Error", "Unable to get Employees");
     });
 
 }
 
+//To generate a modal
 function showGenericModal(title, message){
     
-    let modalHeader =  $(".modal-header");
+    let modalHeader =  $(".modal-header"); 
     let modalBody =  $(".modal-body");
     
     modalHeader.empty();
@@ -72,16 +79,17 @@ function showGenericModal(title, message){
     modalHeader.append("<h4>" + title + "</h4>");
     modalBody.append("<p>" + message + "</p>");
 
-    $("#genericModal").modal('show');
+    $("#genericModal").modal('show'); //Insert into modal
 }
 
+//insert each employee into a table row using template
 function  refreshEmployeeRows(employees) {
 
     let empTemplate = _.template('<% _.forEach(employees, function(employee) { %>' +
                                 '<div class="row body-row" data-id="<%- employee._id %>">' +
-                                '<div class="col-xs-4 body-column"><%- employee._id %><%- employee.FirstName %></div>' +
-                                '<div class="col-xs-4 body-column"><%- employee.LastName %></div>' +
-                                '<div class="col-xs-4 body-column"><%- employee.Position.PositionName %></div>' +
+                                    '<div class="col-xs-4 body-column"><%- employee.FirstName %></div>' +
+                                    '<div class="col-xs-4 body-column"><%- employee.LastName %></div>' +
+                                    '<div class="col-xs-4 body-column"><%- employee.Position.PositionName %></div>' +
                                 '</div>' +
                             '<% }); %>');                        
     let rows = empTemplate({'employees': employees});
@@ -92,6 +100,7 @@ function  refreshEmployeeRows(employees) {
     tbody.append(rows);
 }
 
+//method to search employees matches user search keywords
 function getFilteredEmployeesModel(filterString){
     
     let keywords = filterString.toLowerCase(); 
@@ -104,14 +113,12 @@ function getFilteredEmployeesModel(filterString){
     refreshEmployeeRows(filteredEmp);
 }
 
+//Get an employee by id
 function getEmployeeModelById(id) {
 
     let filteredEmp = _.filter(employeesModel, function(emp) {
-        if (emp._id == id){
-        alert(emp._id);
-        }
         return emp._id == id;
     });
 
-    refreshEmployeeRows(filteredEmp);
+    return filteredEmp;
 }

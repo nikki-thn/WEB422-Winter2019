@@ -38,7 +38,7 @@ function makeAjaxCall(collection){
 
     let well = $( ".well" ); //select the well to append
     // Heroku API url
-    var herokuUrl = "https://infinite-plains-57503.herokuapp.com/" + collection;
+    var herokuUrl = "http://localhost:8081/employees" + collection;
     
     $.ajax({
         url: herokuUrl, 
