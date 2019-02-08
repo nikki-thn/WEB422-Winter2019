@@ -17,49 +17,6 @@ var viewModel = {
     projects: ko.observable([])
 };
 
-//Getting data from Heroku through Ajax call
-function initializeData(collection) {
-
-    // Heroku API url
-    var herokuUrl = "https://lit-fortress-10601.herokuapp.com/" + collection;
-
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            
-            url: herokuUrl,
-            type: "GET",
-            contentType: "application/json"
-        })
-            .done(function (data) {
-       
-                switch (collection) {
-                    case "employees":
-                        ko.mapping.fromJS(data, viewModel.employees);
-                        console.log(viewModel.teams);
-                        break;
-                    case "teams":
-                        ko.mapping.fromJS(data, viewModel.teams);
-                        console.log(viewModel.teams);
-                        break;
-                    case "projects":
-                        ko.mapping.fromJS(data, viewModel.projects);
-                        console.log(viewModel.teams);
-                        break;
-                    default:
-                        break;
-                }
-
-                resolve("Data loaded");
-
-            })
-            .fail(function (err) {
-                console.log("error loading the: " + collection + " data");
-                console.log(err.statusText);
-                reject("loading failed");
-            });
-    });
-}
-
 //To generate a modal
 function showGenericModal(title, message) {
 
@@ -76,16 +33,78 @@ function showGenericModal(title, message) {
 }
 
 
-$(function () {
+function initializeTeams() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: 'https://lit-fortress-10601.herokuapp.com/teams-raw',
+            type: 'GET',
+            contentType: 'application/json'
+        }).done(function (data) {
+            viewModel.teams = ko.mapping.fromJS(data);
+            resolve("Success loading team data");
+        }).fail(function (err) {
+            reject("Error loading team data");
+        });
+    });
+};
 
-    initializeData("teams");
-        // .then(initializeData("employees"))
-        // .then(initializeData("projects"))
-        // .then(() => {
-        //     ko.applyBindings(viewModel);
-        //     $(".multiple").multipleSelect({ filter: true });
-        //     $(".single").multipleSelect({ single: true, filter: true });
-        // }).catch(function (err) {
-        //     showGenericModal("Error", err);
-        // });
+function initializeEmployees(collection) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: 'https://lit-fortress-10601.herokuapp.com/employees',
+            type: 'GET',
+            contentType: 'application/json'
+        }).done(function (data) {
+            viewModel.employees = ko.mapping.fromJS(data);
+            resolve("Success loading employee data");
+        }).fail(function (err) {
+            reject("Error loading employee data");
+        });
+    });
+};
+
+function initializeProjects(collection) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: "https://lit-fortress-10601.herokuapp.com/projects/",
+            type: 'GET',
+            contentType: 'application/json'
+        }).done((data) => {
+            viewModel.projects = ko.mapping.fromJS(data);
+            resolve("Success loading data");
+        }).fail((err) => {
+            reject("Error loading project data");
+        });
+    });
+};
+
+$(function () {
+    initializeTeams()
+        .then(initializeEmployees)
+        .then(initializeProjects)
+        .then(() => {
+            ko.applyBindings(viewModel);
+            $('.multiple').multipleSelect({ filter: true });
+            $('.single').multipleSelect({ single: true, filter: true });
+        }).catch(function (err) {
+            showGenericModal("Error", err);
+        });
 });
+
+function saveTeam() {
+    var team = ko.mapping.toJS(this);
+    $.ajax({
+        url: 'https://lit-fortress-10601.herokuapp.com/team/' + team._id,
+        type: 'PUT',
+        data: JSON.stringify({
+            "Projects": team.Projects,
+            "Employees": team.Employees,
+            "TeamLead": team.TeamLead
+        }),
+        contentType: 'application/json'
+    }).done((data) => {
+        showGenericModal("Success", team.TeamName + " Updated Successfully");
+    }).fail((err) => {
+        showGenericModal("Error", err + " Error updating the team information");
+    });
+};
