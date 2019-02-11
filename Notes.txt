@@ -1,1 +1,35 @@
-Angular: Angular(2009) -> AngularJS(2012-2013) -> Angular v2: idea is same but detailed implementation is different
+Angular: Angular(2009) -> AngularJS(2012-2013) -> Angular v2: idea is same but detailed implementation has changed
+Angular vs React: both components based, front-end
+React: focus more on UI
+Angular: a complete app dev platform using TypeScript (an extention of JS). Code in TypeScript and later translate to JS (similar to SASS -> CSS)
+
+ng new my-dream-app --routing -S //create an angular app with routing and no unit testong
+
+App entry point: src/index.html
+TS entry point: main.ts, src/app/app.Module.ts (every codes will inject into app.modile.ts automatically)
+First component: app.component.ts (in the file, component name is my-np-app)
+
+TypeScript (created by Microsoft) has data type restricted feature (optional). Ex:
+  type:String = "Hello world"
+  type:String[] = []; //array of String
+  
+ 
+ Angular Architecture Overview:
+  Angular building blocks:
+  1. Modules: ie. In app.module.ts file, we see @NgModule
+  2. One module -> Components: ie. In app.component.ts, we see @component
+  
+                      
+      |------>          template (app.component.html)             _____
+      |                                                                |
+      |                     ||                                         |
+      |                     \/                                         |
+      |property                                                        |
+      |binding         metadata (@component: decorator, a fn)          |
+      |                                                                | event binding
+      |                                                                |            
+      |                      ||                                        |
+      |                      \/                                        |
+      |                                                                |
+      | _____          component (app.component.ts)                <----
+              
