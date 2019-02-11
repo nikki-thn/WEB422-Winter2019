@@ -1,0 +1,1 @@
+Angular: Angular(2009) -> AngularJS(2012-2013) -> Angular v2: idea is same but detailed implementation is different
