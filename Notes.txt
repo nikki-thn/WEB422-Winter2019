@@ -33,3 +33,7 @@ TypeScript (created by Microsoft) has data type restricted feature (optional). E
       |                                                                |
       | _____          component (app.component.ts)                <----
               
+ng generate component nameHere --flat //flat no folder created
+
+How to do data binding from "template" and component?
+1.Interpolation eg. {{title}}
