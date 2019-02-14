@@ -37,3 +37,14 @@ ng generate component nameHere --flat //flat no folder created
 
 How to do data binding from "template" and component?
 1.Interpolation eg. {{title}}
+
+
+DIRECTIVES OVERVIEW
++ Built-in Directives: 
+++ Built-in attribute directives
+NgClass
+NgStyle
+NgModel: two way binding with html form
+++ Built-in structural directives: 
+*ngIf, *ngFor
+
