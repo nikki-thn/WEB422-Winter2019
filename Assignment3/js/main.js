@@ -40,6 +40,9 @@ function initializeTeams() {
             type: 'GET',
             contentType: 'application/json'
         }).done(function (data) {
+            data.sort((a,b) => {
+                return parseInt(a.TeamName.replace('Team ', '')) > parseInt(b.TeamName.replace('Team ', ''));
+            });
             viewModel.teams = ko.mapping.fromJS(data);
             resolve("Success loading team data");
         }).fail(function (err) {
