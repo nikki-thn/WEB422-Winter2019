@@ -32,41 +32,43 @@ function showGenericModal(title, message) {
     $("#genericModal").modal('show'); //Insert into modal
 }
 
-
+//call api to get teams data 
 function initializeTeams() {
     return new Promise((resolve, reject) => {
         $.ajax({
             url: 'https://lit-fortress-10601.herokuapp.com/teams-raw',
             type: 'GET',
             contentType: 'application/json'
-        }).done(function (data) {
+        }).done((data) => {
             data.sort((a,b) => {
                 return parseInt(a.TeamName.replace('Team ', '')) > parseInt(b.TeamName.replace('Team ', ''));
             });
             viewModel.teams = ko.mapping.fromJS(data);
             resolve("Success loading team data");
-        }).fail(function (err) {
+        }).fail((err) => {
             reject("Error loading team data");
         });
     });
 };
 
-function initializeEmployees(collection) {
+//call api to get employees data 
+function initializeEmployees() {
     return new Promise((resolve, reject) => {
         $.ajax({
             url: 'https://lit-fortress-10601.herokuapp.com/employees',
             type: 'GET',
             contentType: 'application/json'
-        }).done(function (data) {
+        }).done((data) => {
             viewModel.employees = ko.mapping.fromJS(data);
             resolve("Success loading employee data");
-        }).fail(function (err) {
+        }).fail((err) => {
             reject("Error loading employee data");
         });
     });
 };
 
-function initializeProjects(collection) {
+//call api to get projects data 
+function initializeProjects() {
     return new Promise((resolve, reject) => {
         $.ajax({
             url: "https://lit-fortress-10601.herokuapp.com/projects/",
@@ -81,6 +83,7 @@ function initializeProjects(collection) {
     });
 };
 
+//call init methods to get data and store to KO view model
 $(function () {
     initializeTeams()
         .then(initializeEmployees)
@@ -89,11 +92,12 @@ $(function () {
             ko.applyBindings(viewModel);
             $('.multiple').multipleSelect({ filter: true });
             $('.single').multipleSelect({ single: true, filter: true });
-        }).catch(function (err) {
+        }).catch((err) => {
             showGenericModal("Error", err);
         });
 });
 
+//update changes to team Api
 function saveTeam() {
     var team = ko.mapping.toJS(this);
     $.ajax({
@@ -105,8 +109,8 @@ function saveTeam() {
             "TeamLead": team.TeamLead
         }),
         contentType: 'application/json'
-    }).done((data) => {
-        showGenericModal("Success", team.TeamName + " Updated Successfully");
+    }).done(() => {
+        showGenericModal("Success", team.TeamName + " updated successfully");
     }).fail((err) => {
         showGenericModal("Error", err + " Error updating the team information");
     });
