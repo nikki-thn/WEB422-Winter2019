@@ -69,3 +69,82 @@ class Outer extends Component {
 }
 
 //Note that Outer using state because it changes every 2 second while inner uses props because it simply accept a static value through its defined property
+
+ROUTING IN REACT (Redirect, Not Found, Link to)
+
+--== index.js ==--
+import { BrowserRouter } from 'react-router-dom'
+
+ReactDOM.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+  , document.getElementById('root'));
+  
+--== App.js ==--
+import React, { Component } from 'react';
+import { Route, Switch, Redirect, Link } from 'react-router-dom'
+
+class Home extends Component{
+  render(){
+    return <h1>Home Page</h1>
+  }
+}
+
+class Projects extends Component{
+  render(){
+    return <h1>All Projects Page</h1>
+  }
+}
+
+class Project extends Component{
+  render(){
+    return <h1>Project {this.props.id} Page</h1>
+  }
+}
+
+class Link extends Component{
+  render(){
+    return <h1>Project {this.props.id} Page</h1>
+  }
+}
+
+class NotFound extends Component {
+  render() {
+    return (
+      <div>
+        <h1 className="page-header">{this.props.title}</h1>
+        Page Not Found
+      </div>
+    );
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+        <Switch>
+                <Route exact path='/' render={() => (
+                <Home />
+                )}/>
+                <Route exact path='/Projects' render={() => (
+                <Projects  />
+                )}/>
+                <Route path='/Project/:id' render={(props) => (
+                    <Project id={props.match.params.id} />
+                )}/>
+                <Route path='/testRedirect' render={() => (
+                  <Redirect push to={"/"} />
+                )} />
+                <Route path='/NotFound' render={() => (
+                  <NotFound title="404 Error"/>
+                )} />
+                <Route render={() => (
+                  <Link to="/NotFound">My route </Link>
+                )} />
+        </Switch>
+    );
+  }
+}
+
+export default App;
