@@ -1,0 +1,41 @@
+State vs property: state is similar to property but prefer to ones that can be changed and will be dynamically render (ie a list of name from an array)
+
+When using state, we must supply a key for react to identify an element (use the key of the objects or index of the array)
+
+render() {
+        return (
+            <div>
+                <ul>
+                    {this.state.names.map((name, index) => {
+                        return (
+                            <li key={index} >{name}</li>
+                        );
+                    })}       
+                </ul>
+                <button type="button" className="btn btn-primary btn-sm" onClick={this.handleListItemAdd}>Add List Item</button>
+             </div>
+        );
+    }
+    
+    
+EVENT BINDING AND HANDLING IN REACT //See line 15
+constructor(){ // list names does *not* accept props
+        super();
+        this.state = {
+            names: ["Dean", "Adrien", "Sarah", "Chandra"]
+        }
+        
+        //Binding the event handler with the class
+         this.handleListItemAdd = this.handleListItemAdd.bind(this);
+    }
+  
+  //definition of the event 
+    handleListItemAdd(){
+        this.setState(function(prevState){
+            let newArray = prevState.names;
+            newArray.push("New Item");
+            return {names: newArray};
+        });
+    }
+    
+  
