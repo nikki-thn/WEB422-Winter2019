@@ -37,5 +37,35 @@ constructor(){ // list names does *not* accept props
             return {names: newArray};
         });
     }
-    
   
+  PASSING DATA FROM ONE COMPONENT TO ANOTHER
+  
+class Inner extends Component{
+        render(){ // this.props.name IS updated to reflect the new name: "Bob"
+        return <span>{this.props.name}</span>
+}
+}
+
+class Outer extends Component {
+  constructor() {
+    super()
+    this.state = {
+      outerName: ""
+    }
+  }
+
+  componentDidMount(){
+    // set the "outerName" to change to "Bob" after 2 seconds
+    setTimeout(()=>{
+      this.setState({
+        outerName: "Bob"
+      });
+    },2000);
+  }
+
+  render() {
+    return <Inner name={this.state.outerName} />
+  }
+}
+
+//Note that Outer using state because it changes every 2 second while inner uses props because it simply accept a static value through its defined property
