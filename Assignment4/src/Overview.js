@@ -9,17 +9,17 @@ class Overview extends Component {
         let url = "https://lit-fortress-10601.herokuapp.com/";
         return (
           <div>
-            <MainContainer sidebar={this.props.title}>
-            <h1 className="page-header">{this.props.title}</h1> 
+            <MainContainer isActive="Overview">
+            <h1 className="page-header">Overview</h1> 
             <div className="row"> 
               <div className="col-md-4"> 
-                <ProjectsPanel title="Projects" dataSource={url + "projects"} />
+                <ProjectsPanel dataSource={url + "projects"} />
               </div> 
               <div className="col-md-4"> 
-                <TeamsPanel title="Teams" dataSource={url + "teams"} />
+                <TeamsPanel dataSource={url + "teams"} />
               </div> 
-              {<div className="col-md-4"> 
-                <EmployeesPanel title="Employees" dataSource={url + "employees"} />
+              <div className="col-md-4"> 
+                <EmployeesPanel dataSource={url + "employees"} />
               </div>}
             </div> 
             </MainContainer>

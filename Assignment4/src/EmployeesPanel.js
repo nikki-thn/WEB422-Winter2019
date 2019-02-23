@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment';
-import { Link, Redirect } from 'react-router-dom';
 
 class EmployeesPanel extends Component {
     constructor(props) {
@@ -23,9 +21,6 @@ class EmployeesPanel extends Component {
             });
     }
 
-    componentWillUnmount() {
-
-    }
     render() {
         return (
             <div className="panel panel-default">
@@ -36,11 +31,11 @@ class EmployeesPanel extends Component {
                     <div className="table-responsive overview-table">
                         <table className="table table-striped table-bordered">
                             <tbody>
-                                {this.state.employees.map((employee, index) => {
+                                {this.state.employees.map((emp, index) => {
                                     return (
-                                        <tr>
-                                            <td>{employee.FirstName} {employee.LastName}</td>
-                                            <td>{employee.Position.PositionName}</td>
+                                        <tr key={index}>
+                                            <td>{emp.FirstName} {emp.LastName}</td>
+                                            <td>{emp.Position.PositionName}</td>
                                         </tr>
                                     )
                                 })}

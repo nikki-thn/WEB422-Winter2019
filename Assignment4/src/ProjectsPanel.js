@@ -22,10 +22,7 @@ class ProjectsPanel extends Component {
                 console.log("error");
             });
     }
-
-    componentWillUnmount() {
-
-    }
+    
     render() {
         return (
             <div className="panel panel-default">
@@ -37,7 +34,7 @@ class ProjectsPanel extends Component {
                         <table className="table table-striped table-bordered">
                             <tbody>
                                 {this.state.projects.map((project, index) => {
-                                    let activeDate = moment().diff(moment(project.ProjectStartDate), 'days');
+                                    let activeDate = moment().diff(moment(project.ProjectStartDate), 'days'); 
                                     return (
                                         <tr>
                                             <td>{project.ProjectName}</td>

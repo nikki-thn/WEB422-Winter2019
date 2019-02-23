@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import moment from 'moment';
-import { Link, Redirect } from 'react-router-dom';
+import  React,{ Component } from 'react';
 
 class TeamsPanel extends Component {
     constructor(props) {
@@ -23,9 +21,6 @@ class TeamsPanel extends Component {
             });
     }
 
-    componentWillUnmount() {
-
-    }
     render() {
         return (
             <div className="panel panel-default">
@@ -47,7 +42,7 @@ class TeamsPanel extends Component {
                             </tbody>
                         </table>
                     </div>
-                    <a href="/projects" className="btn btn-primary form-control">View All Project Data</a>
+                    <a href="/teams" className="btn btn-primary form-control">View All Project Data</a>
                 </div>
             </div>
         );
