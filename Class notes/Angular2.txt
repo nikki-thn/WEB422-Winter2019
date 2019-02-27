@@ -1,0 +1,55 @@
+// From: https://angular.io/tutorial/toh-pt1 
+
+//This example, Hero class is defined as hero.ts
+export class Hero {
+  id: number;
+  name: string;
+}
+
+======= Create Angular component =========
+CLI: ng generate component componentName
+
+======= Display object ========
+
+***TS file
+import { Component, OnInit } from '@angular/core';
+import { Hero } from '../hero';
+
+@Component({
+  selector: 'app-heroes',
+  templateUrl: './heroes.component.html',
+  styleUrls: ['./heroes.component.css']
+})
+export class HeroesComponent implements OnInit {
+  hero: Hero = {
+    id: 1,
+    name: 'Windstorm'
+  };
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+}
+
+***HTML file
+
+<h2>{{hero.name | upppercase }} Details</h2> <!-- Piping to format strings, currency, dates and other display data -->
+<div><span>id: </span>{{hero.id}}</div>
+<div><span>name: </span>{{hero.name}}</div>
+
+======= Edit object ========
+Using HTML form, we apply Two-way binding to allow displaying and updating data from user
+
+****HTML file - 
+**Needs 3 imports for ngModel in app.module.ts file
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+
+<div>
+  <label>name:
+    <input [(ngModel)]="hero.name" placeholder="name">
+    <!-- [(ngModel)] is Angular's two-way data binding syntax. Here it bind the input field with property name from hero obj-->
+  </label>
+</div>
