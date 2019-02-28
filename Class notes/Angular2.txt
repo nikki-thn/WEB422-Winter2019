@@ -53,3 +53,60 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
     <!-- [(ngModel)] is Angular's two-way data binding syntax. Here it bind the input field with property name from hero obj-->
   </label>
 </div>
+
+====== Event Handler ======
+
+<li *ngFor="let hero of heroes" (click)="onSelect(hero)"> //on click, call onSelect pass the current hero obj
+
+selectedHero: Hero; //??? Array or a single obj
+onSelect(hero: Hero): void {
+  this.selectedHero = hero;
+}
+
+<div *ngIf="selectedHero"> <!-- only shows when selectedHero is not empty -->
+      <input [(ngModel)]="selectedHero.name" placeholder="name">
+</div>
+
+===== Change CSS class =======
+
+<li *ngFor="let hero of heroes"
+  [class.selected]="hero === selectedHero" 
+  <!-- add class "selected" to the element only when hero === selectedHero -->
+  (click)="onSelect(hero)">
+  <span class="badge">{{hero.id}}</span> {{hero.name}}
+</li>
+
+====== Binding external input property =======
+
+Passing property from one component to another
+
+*****Hero-detail.ts
+import { Component, OnInit, Input } from '@angular/core';
+import { Hero } from '../hero';
+ 
+@Component({
+  selector: 'app-hero-detail',
+  templateUrl: './hero-detail.component.html',
+  styleUrls: ['./hero-detail.component.css']
+})
+export class HeroDetailComponent implements OnInit {
+  @Input() hero: Hero; //hero obj type Hero getting from Hero component
+}
+
+****Hero-details.html
+<div *ngIf="hero"> <!-- if hero is not empty
+  <h2>{{hero.name | uppercase}} Details</h2>
+</div>
+
+*****Hero.html
+<h2>My Heroes</h2>
+
+<ul class="heroes">
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+
+<app-hero-detail [hero]="selectedHero"></app-hero-detail> <!-- pass or giving the selectedHero to Hero-details
