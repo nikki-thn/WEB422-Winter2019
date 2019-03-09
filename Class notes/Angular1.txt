@@ -2,7 +2,8 @@ ANGULAR COMPONENT;  has 3 files name.component.css / name.component.ts / name.co
 
 ng new my-dream-app --routing -S //create new angular app
 ng serve --o //run app
-ng g c RedBox --flat  // create component
+ng g c RedBox --flat  // create component no folder
+ng g s DataManager --module app // add data-service to app
 
 --== component.ts ==--
 //where component render codes
