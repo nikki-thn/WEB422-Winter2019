@@ -5,6 +5,7 @@ ng serve --o //run app
 ng g c RedBox --flat  // create component no folder
 ng g s DataManager --module app // add data-service to app
 ng generate class Position //generate a class
+"ng g s serviceName --spec false //add data service for a class
 
 --== component.ts ==--
 //where component render codes
