@@ -1,5 +1,8 @@
 ANGULAR COMPONENT;  has 3 files name.component.css / name.component.ts / name.component.css
 
+ng new my-dream-app --routing -S
+ng serve --o
+
 --== component.ts ==--
 //where component render codes
 
