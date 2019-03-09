@@ -4,6 +4,7 @@ ng new my-dream-app --routing -S //create new angular app
 ng serve --o //run app
 ng g c RedBox --flat  // create component no folder
 ng g s DataManager --module app // add data-service to app
+ng generate class Position //generate a class
 
 --== component.ts ==--
 //where component render codes
