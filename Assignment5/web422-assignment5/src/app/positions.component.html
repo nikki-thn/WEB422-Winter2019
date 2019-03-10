@@ -1,0 +1,22 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Positions</h2>
+      <table class="table table-condensed table-hover">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Salary</th>
+        </tr>
+        <tr *ngFor='let pos of positions'>
+          <td>{{pos.PositionName}}</td>
+          <td>{{pos.PositionDescription}}</td>
+          <td>{{ pos.PositionBaseSalary | number:'1.2-0' }}</td>
+        </tr>
+      </table>
+      <hr>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
