@@ -13,9 +13,10 @@ export class EmployeesComponent implements OnInit {
   
   employees: Observable<Employee[]>;
 
+  //inject the service to the component
   constructor(private m: EmployeeService) { }
 
   ngOnInit() {
-    this.employees = this.m.getEmployees();
+    this.employees = this.m.getEmployees().subscribe(data => this.employees = data);
   }
 }
