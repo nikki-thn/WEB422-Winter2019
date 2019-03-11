@@ -1,0 +1,16 @@
+HTML forms reviews
+
+1. Text boxes
+  * <input> : has type="text/email/time/number/range"
+  * <textarea> 
+2. Selection
+  * single selection: 
+    <input type=radio>
+    <select>
+  * multiple selection: check boxes
+    <select multiple>
+    
+    
+ import { FormsModule } from '@angular/forms';
+    
+  
