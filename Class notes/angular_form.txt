@@ -10,7 +10,32 @@ HTML forms reviews
   * multiple selection: check boxes
     <select multiple>
     
+    <radio> element must have same name so it can be grouped together
     
  import { FormsModule } from '@angular/forms';
     
-  
+ //Two ways binding 
+ In HTML form: depends on the property of a class, can be
+ <input .....  [(ngModel)]="driverData.name" > //binding this field to a property of the defined class
+ <input .....  [(ngModel)]="name" > //binding this field to a property of the defined class //basic data type
+ 
+Submit form
+<form (ngSubmit)='onSubmit()'>  //default method
+<form #f='ngForm' (ngSubmit)='onSubmit(f)'> // passing control to a submit method to handle
+
+onSubmit(f: NgForm): void { //needs to pass in ngForm
+  f.valid(?)/invalid() //all input are filled, might returnn true or false
+  f.touched() //is the form is touched or clicked on
+  f.value(), f.dirty()
+} 
+
+Single Selection
+<select multiple class="form-control" id="ownedTransportation" name="ownedTransportation" [(ngModel)]="driverData.ownedTransportation">
+        <option *ngFor = "let transportation of transportationList" [value]="transportation.value">{{transportation.text}}</option>
+</select>
+
+Multiple Selections
+<select class="form-control" id="favouriteTransportation" name="favouriteTransportation [(ngModel)]="driverData.favouriteTransportation">
+     <option *ngFor = "let transportation of transportationList" [value]="transportation.value">{{transportation.text}}    </option>
+</select>
+ 
