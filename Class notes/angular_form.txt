@@ -38,4 +38,6 @@ Multiple Selections
 <select class="form-control" id="favouriteTransportation" name="favouriteTransportation [(ngModel)]="driverData.favouriteTransportation">
      <option *ngFor = "let transportation of transportationList" [value]="transportation.value">{{transportation.text}}    </option>
 </select>
+
+
  
