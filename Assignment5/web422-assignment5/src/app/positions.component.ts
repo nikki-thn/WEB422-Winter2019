@@ -10,17 +10,15 @@ import { Observable } from "rxjs";
 })
 export class PositionsComponent implements OnInit {
 
-  positions: Observable<Position[]>;
+  positions: Position[];
 
   constructor(private m: PositionService) { }
 
   ngOnInit() {
-    //this.positions = this.m.getPositions();
-    //this.m.getPositions().subscribe(positions => this.positions = positions);
+    this.m.getPositions().subscribe(data => this.positions = data);
   }
 
   ngOnDestroy() {
-    //unsubscribe
   }
 
 }

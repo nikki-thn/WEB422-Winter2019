@@ -10,12 +10,12 @@ import { Position } from './position';
 
 export class PositionService {
 
-  private url = "https://lit-fortress-10601.herokuapp.com/";
+  private url = "https://sheltered-reef-62875.herokuapp.com/";
 
   constructor(private http: HttpClient) { }
 
   getPositions(): Observable<Position[]> {
-    return this.http.get<Position[]>(this.url + "/positions");
+    return this.http.get<Position[]>(this.url + "positions");
   }
 
 }
