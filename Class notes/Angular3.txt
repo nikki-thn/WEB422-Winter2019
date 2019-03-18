@@ -4,3 +4,30 @@ CLI: ng generate module app-routing --flat --module=app
 --module=app tells the CLI to register it in the imports array of the AppModule
 
 
+====== Angular Deployment =====
+ng build //to deploy with the base is the root folder????
+.map : file extention that is the minimize version of js file
+
+ng build --base-href=/my/app/ .  //change the base folder to the specified directory
+
+ng build --prod // build product with optimization features as listed, better for performance
+
+Ahead-of-Time (AOT) Compilation: pre-compiles Angular component templates.
+Production mode: deploys the production environment which enables production mode.
+Bundling: concatenates your many application and library files into a few bundles.
+Minification: removes excess whitespace, comments, and optional tokens.
+Uglification: rewrites code to use short, cryptic variable and function names.
+Dead code elimination: removes unreferenced modules and much unused code.
+The remaining copy deployment steps are the same as before.
+
+
+====== Angular Testing ========
+//// Unit Testing: testing if property or methods returns correct values
+//Angular unit testing (testing components)
+//e-2-e (end-to-end) testing functionality
+
+app.component.spec.ts //default test file for a component, this case, for the "app" component
+A spec: a test that is written Jasmine
+
+ng test // to run a .spec.ts or a test file
+ng e2e // to run a e2e test
