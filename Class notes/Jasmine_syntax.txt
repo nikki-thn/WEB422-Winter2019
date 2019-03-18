@@ -30,7 +30,9 @@
     toBeDefined() / toBeUndefined(): expect a variable to be defined or not defined
     toContain(): check for sustring , an alternative is toMatch()
     toBeLessThan() / toBeGreaterThan(): numeric comparisons
-    toBeCloseTo(): 
-    
-    truthy ( vs falsy ( 0, false, ""): each data type will have a defined truthy or falsy values
+    toBeCloseTo(): approximate comparisons
+    toThrow() / toThrowError(): to check if a function is throwing error as expected
+    toBeTruthy() / toBeFalsy() // truthy vs falsy ( 0, false, ""): each data type will have a defined truthy or falsy values
  
+ 
+ ===== =====
