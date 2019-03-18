@@ -1,0 +1,36 @@
+====== JASMINE SYNTAX =====
+1. Test suite: (or test group)
+  describe("description", function { specs } ): a name or explaination of the test, can be one or more functions
+  
+2. spec (test)
+  it("string", function { one or expectation } )
+  expectation: using expect( "actual value" ) chained to Matcher functions
+  
+  Code Examples:
+  
+  describe('AppComponent', () => { 
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent
+      ],
+    }).compileComponents();
+  }));
+  it('should create the app', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy(); //chaining expect() to a matcher function
+  }));
+  
+  
+  Matcher functions: take in the benchmark value to compare against the actual value
+    toBe(): one variable equal another variable
+    toEqual(): one variable equal to a value
+    toMatch(): for reg expression
+    toBeDefined() / toBeUndefined(): expect a variable to be defined or not defined
+    toContain(): check for sustring , an alternative is toMatch()
+    toBeLessThan() / toBeGreaterThan(): numeric comparisons
+    toBeCloseTo(): 
+    
+    truthy ( vs falsy ( 0, false, ""): each data type will have a defined truthy or falsy values
+ 
