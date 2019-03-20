@@ -12,15 +12,17 @@ import { Observable } from "rxjs";
 export class EmployeesComponent implements OnInit {
   
   employees: Employee[];
-
+  
+  private employeesSub: any;
   //inject the service to the component
   constructor(private m: EmployeeService) { }
 
   ngOnInit() {
-   this.m.getEmployees().subscribe(data => this.employees = data);
+   this.employeesSub = this.m.getEmployees().subscribe(data => this.employees = data);
   }
 
   ngOnDestroy(){
     //unsubscribe
+    if(this.employeesSub) {this.employeesSub.unsubscribe(); }
   }
 }

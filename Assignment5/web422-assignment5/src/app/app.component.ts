@@ -8,6 +8,7 @@
 * Student ID: 112 314 174 
 * Date: March 9, 2019
 *
+* Heroku API: https://sheltered-reef-62875.herokuapp.com/
 ********************************************************************************/ 
 
 import { Component } from '@angular/core';
