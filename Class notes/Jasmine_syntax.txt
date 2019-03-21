@@ -35,7 +35,7 @@
     toBeTruthy() / toBeFalsy() // truthy vs falsy ( 0, false, ""): each data type will have a defined truthy or falsy values
  
  
- ===== KARMA TESTING =====
+ ===== MORE ON TESTING =====
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser'; //for .query()
