@@ -69,10 +69,24 @@ describe('ComponentOneComponent', () => {
   expect(pElements.length).toBeGreaterThan(0);
   });
   
-  it('must have at least 1 paragraph', () => {
-  let pElements = fixture.debugElement.queryAll(By.css('p'));
-  expect(pElements.length).toBeGreaterThan(0);
+  //TEST: 
+  it('The "greeting" must read: "Hello"',()=>{
+    let greetingElement = fixture.debugElement.query(By.css('p.greeting'));
+      //expect(greetingElement.textContent).toEqual('Hello'); // does not work, because we need a "native element"
+      expect(greetingElement.nativeElement.textContent).toEqual('Hello');
+  });
+
+  //TEST: manually invoke the click event (using .click()) and write our expectation 
+  it('Sets x to 1 when "myButton" is clicked', () => {
+  let button = fixture.debugElement.query(By.css('button.myButton'));
+  button.nativeElement.click();
+
+  //once the component fixture “becomes stable”
+    fixture.whenStable().then(() => {
+      expect(component.x).toBe(1); //check the property x from the component, hence component.x
+    });
   });
 
 });
+
 
