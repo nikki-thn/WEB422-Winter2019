@@ -35,4 +35,44 @@
     toBeTruthy() / toBeFalsy() // truthy vs falsy ( 0, false, ""): each data type will have a defined truthy or falsy values
  
  
- ===== =====
+ ===== KARMA TESTING =====
+
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser'; //for .query()
+import { ComponentOneComponent } from './component-one.component';
+
+describe('ComponentOneComponent', () => {
+  let component: ComponentOneComponent; //component we want to test
+  let fixture: ComponentFixture<ComponentOneComponent>; //fixture???
+
+//Before component is create, do some setup
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({ //### TestBed: an env, give a component to test
+      declarations: [ ComponentOneComponent ] //## name a component to test
+    })
+    .compileComponents();
+  }));
+
+//Here, TestBed is ready, attach fixture to the testbed
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ComponentOneComponent); //### connect the component to the tests, make fixture avail
+    component = fixture.componentInstance; //### access the component
+    fixture.detectChanges(); //access an element of a component ??
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy(); //### which result expected
+  });
+  
+  it('must have at least 1 paragraph', () => {
+  let pElements = fixture.debugElement.queryAll(By.css('p'));
+  expect(pElements.length).toBeGreaterThan(0);
+  });
+  
+  it('must have at least 1 paragraph', () => {
+  let pElements = fixture.debugElement.queryAll(By.css('p'));
+  expect(pElements.length).toBeGreaterThan(0);
+  });
+
+});
+
