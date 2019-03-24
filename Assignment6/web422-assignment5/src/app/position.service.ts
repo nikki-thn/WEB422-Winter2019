@@ -18,12 +18,11 @@ export class PositionService {
     return this.http.get<Position[]>(this.url + "positions");
   }
 
-  savePosition(position: Position) {
-    return this.http.put<any>("someURL/", position);
+  savePosition(position: Position): Observable<any> {
+    return this.http.put<any>(this.url + "position/" + position._id, position);
   }
 
-  getPosition(id){
-    return this.http.get<Position[]>("someURL/employee-raw/" + id);
+  getPosition(id): Observable<Position[]>{
+    return this.http.get<Position[]>(this.url + "position/" + id);
   }
-
 }

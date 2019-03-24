@@ -8,14 +8,16 @@ Employees by Full Name or Position" (keyup)="onEmployeeSearchKeyUP($event)" /><b
       <table class="table table-condensed table-hover">
         <tr>
           <th>Full Name</th>
+          <th>Position</th>
           <th>Address</th>
           <th>Phone Number</th>
           <th>Hire Date</th>
         </tr>
-        <tr *ngFor='let emp of employees' [routerLink]="['/employee', employee._id]">
-          <td>{{emp.FirstName}}</td>
-          <td>{{emp.LastName}}</td>
+        <tr *ngFor='let emp of filteredEmployees' (click)="routeEmployee(emp._id)">
+          <td>{{emp.FirstName}} {{emp.LastName}}</td>
+          <td>{{emp.Position.PositionName}}</td>
           <td>{{emp.AddressCity}}</td>
+          <td>{{emp.PhoneNum}}</td>
           <td>{{emp.HireDate | date : 'longDate'}}</td>
         </tr>
       </table>

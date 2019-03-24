@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './positions.component.html',
   styleUrls: ['./positions.component.css']
 })
+
 export class PositionsComponent implements OnInit {
 
   positions: Position[];
@@ -28,8 +29,8 @@ export class PositionsComponent implements OnInit {
     if(this.positionsSub) {this.positionsSub.unsubscribe(); }
   }
 
-  routePosition(id: string){
-    
+  routePosition(_id: string) {
+    console.log(_id);
+    this.router.navigate(['/position', _id]);
   }
-
 }

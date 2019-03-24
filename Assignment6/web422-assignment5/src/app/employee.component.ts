@@ -11,7 +11,6 @@ import { NgForm } from "@angular/forms";
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css']
 })
-
 export class EmployeeComponent implements OnInit {
 
   private paramSubsctiption: any;
@@ -40,11 +39,12 @@ export class EmployeeComponent implements OnInit {
           this.positions = data;
         });
       }); // (+) converts string 'id' to a number
-      // In a real app: dispatch action to load the details here.
+      //In a real app: dispatch action to load the details here.
    });
   }
-  
-  onSubmit(f: NgForm): void{
+
+  onSubmit(f: NgForm) :void{
+    console.log("heree", this.employee);
     this.saveEmployeeSubscription = this.m.saveEmployee(this.employee).subscribe(()=>{
       this.successMessage = true;
       console.log("success");
@@ -56,6 +56,6 @@ export class EmployeeComponent implements OnInit {
 
   ngOnDestroy() {
     if(this.paramSubsctiption){this.paramSubsctiption.unsubscribe();}
- }
+  }
 
 }

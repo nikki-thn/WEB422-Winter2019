@@ -20,11 +20,11 @@ export class EmployeeService {
     return this.http.get<Employee[]>(this.url + "employees");
   }
 
-  saveEmployee(employee: EmployeeRaw) {
-    return this.http.put<any>("someURL/", employee);
+  saveEmployee(employee: EmployeeRaw): Observable<any>{
+    return this.http.put<any>(this.url + "employee/" + employee._id, employee);
   }
 
-  getEmployee(id){
-    return this.http.get<Employee[]>("someURL/employee-raw/" + id);
+  getEmployee(id): Observable<EmployeeRaw[]> {
+    return this.http.get<EmployeeRaw[]>(this.url + "employee-raw/" + id);
   }
 }
