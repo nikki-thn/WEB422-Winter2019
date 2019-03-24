@@ -1,0 +1,26 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Employees</h2>
+      <input class="form-control" id="EmployeeSearch" name="EmployeeSearch" type="text" placeholder="Search
+Employees by Full Name or Position" (keyup)="onEmployeeSearchKeyUP($event)" /><br />
+      <table class="table table-condensed table-hover">
+        <tr>
+          <th>Full Name</th>
+          <th>Address</th>
+          <th>Phone Number</th>
+          <th>Hire Date</th>
+        </tr>
+        <tr *ngFor='let emp of employees' [routerLink]="['/employee', employee._id]">
+          <td>{{emp.FirstName}}</td>
+          <td>{{emp.LastName}}</td>
+          <td>{{emp.AddressCity}}</td>
+          <td>{{emp.HireDate | date : 'longDate'}}</td>
+        </tr>
+      </table>
+      <hr>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
