@@ -31,6 +31,7 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.successMessage = false;
+    this.failMessage = false; 
     this.paramSubsctiption = this.route.params.subscribe(params => {
       this.employeeSubscription = this.m.getEmployee(params['_id']).subscribe(emp => {
         this.employee = emp[0];
@@ -43,12 +44,12 @@ export class EmployeeComponent implements OnInit {
    });
   }
   
-  onSubmit(f: NgForm){
+  onSubmit(f: NgForm): void{
     this.saveEmployeeSubscription = this.m.saveEmployee(this.employee).subscribe(()=>{
       this.successMessage = true;
       console.log("success");
       setTimeout(()=>{
-        this.successMessage = false;
+        this.failMessage = true;
       },2500)
     });
   }
