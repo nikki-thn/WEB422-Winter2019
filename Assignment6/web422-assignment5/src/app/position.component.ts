@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PositionService } from './position.service';
+import { ActivatedRoute } from '@angular/router';
+import { Position } from './position';
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-position',
@@ -7,9 +11,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PositionComponent implements OnInit {
 
-  constructor() { }
+  private paramSubsctiption: any;
+  private positionSubscription: any;
+  private savePositionSubscription: any;
+  private position: Position;
+  private successMessage: boolean;
+  private failMessage: boolean;
+
+  constructor(
+    private p: PositionService,
+    private route: ActivatedRoute 
+  ) { }
 
   ngOnInit() {
+    this.successMessage = false;
+    this.failMessage = false; 
+
+    this.paramSubsctiption = this.route.params.subscribe(params => {
+      this.positionSubscription = this.p.getPosition(params['_id']).subscribe(pos => {
+        this.position = pos[0];
+        });
+      }); // (+) converts string 'id' to a number
+      //In a real app: dispatch action to load the details here.
+  }
+
+  onSubmit(f: NgForm) :void{
+    console.log("heree", this.position);
+    this.savePositionSubscription = this.p.savePosition(this.position).subscribe(()=>{
+      this.successMessage = true;
+      console.log("success");
+      setTimeout(()=>{
+        this.failMessage = true;
+      },2500)
+    });
   }
 
 }

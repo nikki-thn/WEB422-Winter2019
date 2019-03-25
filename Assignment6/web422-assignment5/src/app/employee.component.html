@@ -20,7 +20,7 @@
         <div class="form-group">
           <label for="LastName">Last Name:</label>
           <input required [(ngModel)]="employee.LastName" class="form-control" id="LastName" type="text" name="LastName" />
-          <span class="help-block">Last Name is Required</span>
+          <span *ngIf="name.errors && name.errors.required" class="help-block">Last Name is Required</span>
         </div>
       </div>
     </div>
