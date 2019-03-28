@@ -24,7 +24,7 @@ export class EmployeeService {
     return this.http.put<any>(this.url + "employee/" + employee._id, employee);
   }
 
-  getEmployee(id): Observable<EmployeeRaw[]> {
-    return this.http.get<EmployeeRaw[]>(this.url + "employee-raw/" + id);
+  getEmployee(_id: string): Observable<EmployeeRaw[]> {
+    return this.http.get<EmployeeRaw[]>(this.url + "employee-raw/" + _id);
   }
 }

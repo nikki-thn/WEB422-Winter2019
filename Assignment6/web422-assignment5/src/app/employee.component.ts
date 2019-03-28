@@ -5,6 +5,7 @@ import { EmployeeService } from './employee.service';
 import { PositionService } from './position.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from "@angular/forms";
+import { Employee } from './employee';
 
 @Component({
   selector: 'app-employee',
@@ -17,7 +18,7 @@ export class EmployeeComponent implements OnInit {
   private employeeSubscription: any;
   private getPositionsSubcription: any;
   private saveEmployeeSubscription: any;
-  private employee: EmployeeRaw;
+  employee: EmployeeRaw;
   private positions: Position[];
   private successMessage: boolean;
   private failMessage: boolean;
@@ -29,33 +30,45 @@ export class EmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.successMessage = false;
-    this.failMessage = false; 
+
+    this.employee = new EmployeeRaw();
+
     this.paramSubsctiption = this.route.params.subscribe(params => {
       this.employeeSubscription = this.m.getEmployee(params['_id']).subscribe(emp => {
         this.employee = emp[0];
-
         this.getPositionsSubcription = this.p.getPositions().subscribe(data => {
           this.positions = data;
         });
       }); // (+) converts string 'id' to a number
       //In a real app: dispatch action to load the details here.
+
+      this.successMessage = false;
+      this.failMessage = false; 
    });
   }
 
   onSubmit(f: NgForm) :void{
-    console.log("heree", this.employee);
-    this.saveEmployeeSubscription = this.m.saveEmployee(this.employee).subscribe(()=>{
-      this.successMessage = true;
-      console.log("success");
-      setTimeout(()=>{
+    this.saveEmployeeSubscription = this.m.saveEmployee(this.employee).subscribe(
+      (okay)=>{
+        this.successMessage = true;
+        console.log("success");
+        setTimeout(()=>{
+          this.successMessage = false;
+        },2500)
+      },(error)=> {
         this.failMessage = true;
-      },2500)
-    });
+        console.log("Error occur: ", error);
+        setTimeout(()=>{
+          this.failMessage = false;
+        },2500)
+      });
   }
 
   ngOnDestroy() {
     if(this.paramSubsctiption){this.paramSubsctiption.unsubscribe();}
+    if(this.employeeSubscription){this.employeeSubscription.unsubscribe();}
+    if(this.getPositionsSubcription){this.getPositionsSubcription.unsubscribe();}
+    if(this.saveEmployeeSubscription){this.saveEmployeeSubscription.unsubscribe();}
   }
 
 }

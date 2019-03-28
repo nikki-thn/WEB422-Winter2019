@@ -9,17 +9,19 @@
       <form #f='ngForm' (ngSubmit)="onSubmit(f)">
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group" [class.has-error]="pName.errors">
               <label for="PositionName">Position Name:</label>
-              <input required [(ngModel)]="position.PositionName" class="form-control" id="PositionName" type="text" name="PositionName" />
+              <input #pName="ngModel" required [(ngModel)]="position.PositionName" class="form-control" id="PositionName" type="text" name="PositionName" />
+              <span *ngIf="pName.errors" class="help-block">Position Name is Required</span>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group" [class.has-error]="pDescription.errors">
               <label for="PositionDescription">Description:</label>
-              <textarea required [(ngModel)]="position.PositionDescription" class="form-control" id="PositionDescription" rows="5" name="PositionDescription"></textarea>
+              <textarea #pDescription="ngModel" required [(ngModel)]="position.PositionDescription" class="form-control" id="PositionDescription" rows="5" name="PositionDescription"></textarea>
+              <span *ngIf="pDescription.errors" class="help-block">Position Description is Required</span>
             </div>
           </div>
         </div>
@@ -33,10 +35,10 @@
   </div>
 <br />
 <div *ngIf="successMessage" class="alert alert-success">
-  <strong>Success!</strong> Position: "Position Name" was successfully saved.
+  <strong>Success!</strong> Position: "Position" was successfully saved.
 </div>
 <div *ngIf="failMessage" class="alert alert-danger">
-  <strong>Error!</strong> Position: "Position Name" could not be saved.
+  <strong>Error!</strong> Position: "Position" could not be saved.
 </div>
 </div>
 <br /><br />

@@ -4,5 +4,5 @@ export class Position {
         public PositionName: string,
         public PositionDescription: string,
         public PositionBaseSalary: number,
-        public __v: number) { }
+        public __v: number) { } 
 }

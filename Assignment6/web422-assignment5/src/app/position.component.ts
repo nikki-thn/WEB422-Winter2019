@@ -37,13 +37,26 @@ export class PositionComponent implements OnInit {
 
   onSubmit(f: NgForm) :void{
     console.log("heree", this.position);
-    this.savePositionSubscription = this.p.savePosition(this.position).subscribe(()=>{
-      this.successMessage = true;
-      console.log("success");
-      setTimeout(()=>{
+    this.savePositionSubscription = this.p.savePosition(this.position).subscribe(
+      (okay)=>{
+        this.successMessage = true;
+        console.log("success");
+        setTimeout(()=>{
+          this.successMessage = false;
+        },2500)
+      },(error)=> {
         this.failMessage = true;
-      },2500)
-    });
+        console.log("Error occur: ", error);
+        setTimeout(()=>{
+          this.failMessage = false;
+        },2500)
+      });
+  }
+
+  ngOnDestroy() {
+    if(this.paramSubsctiption){this.paramSubsctiption.unsubscribe();}
+    if(this.positionSubscription){this.positionSubscription.unsubscribe();}
+    if(this.savePositionSubscription){this.savePositionSubscription.unsubscribe();}
   }
 
 }

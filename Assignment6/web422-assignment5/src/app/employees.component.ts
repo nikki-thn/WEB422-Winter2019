@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from './employee';
-import { Position } from './position';
 import { EmployeeService } from './employee.service';
 import { Router } from '@angular/router';
+import { Position } from './position';
+
 
 @Component({
   selector: 'app-employees',
@@ -12,9 +13,10 @@ import { Router } from '@angular/router';
 
 export class EmployeesComponent implements OnInit {
   
-  employees: Employee[];
+  private employees: Employee[];
   private employeesSub: any;
-  filteredEmployees: Employee[];
+  private filteredEmployees: Employee[];
+  private temp: Position;
 
   //inject the service to the component
   constructor(
@@ -29,7 +31,7 @@ export class EmployeesComponent implements OnInit {
 
   ngOnDestroy(){
     //unsubscribe
-    if(this.employeesSub) {this.employeesSub.unsubscribe(); }
+    if(this.employeesSub) {this.employeesSub.unsubscribe();}
   }
 
   routeEmployee(_id: string) {
@@ -41,11 +43,9 @@ export class EmployeesComponent implements OnInit {
     let search = event.target.value.toLowerCase();
 
     this.filteredEmployees = this.employees.filter((employee) => {
-      
-      if ((employee.FirstName.toLowerCase().match(search)) ||
-        (employee.LastName.toLowerCase().match(search)) ) { //|| (employee.Position.PositionName.toLowerCase().match(search))
-        return true;
-      }
+      return (employee.FirstName.toLowerCase().match(search) ||
+          employee.LastName.toLowerCase().match(search)
+          || employee.Position.PositionName.toLowerCase().match(search))
     });
 
     if(search == "") {
