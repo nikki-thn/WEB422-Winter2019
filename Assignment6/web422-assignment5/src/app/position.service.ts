@@ -22,7 +22,7 @@ export class PositionService {
     return this.http.put<any>(this.url + "position/" + position._id, position);
   }
 
-  getPosition(id): Observable<Position[]>{
+  getPosition(id: string): Observable<Position[]>{
     return this.http.get<Position[]>(this.url + "position/" + id);
   }
 }

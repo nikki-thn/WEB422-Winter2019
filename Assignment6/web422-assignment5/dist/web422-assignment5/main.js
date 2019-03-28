@@ -274,6 +274,26 @@ var ContentComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/employee-raw.ts":
+/*!*********************************!*\
+  !*** ./src/app/employee-raw.ts ***!
+  \*********************************/
+/*! exports provided: EmployeeRaw */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmployeeRaw", function() { return EmployeeRaw; });
+var EmployeeRaw = /** @class */ (function () {
+    function EmployeeRaw(obj) {
+    }
+    return EmployeeRaw;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/employee.component.css":
 /*!****************************************!*\
   !*** ./src/app/employee.component.css ***!
@@ -292,7 +312,7 @@ module.exports = ".center{ margin-top:40px; }\n/*# sourceMappingURL=data:applica
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav></app-nav>\n<div class=\"center\">\n  <h2>Employee: First Name Last Name</h2>\n  <p class=\"lead\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non odio sed eros tristique bibendum.</p>\n</div>\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <form #f='ngForm' (ngSubmit)=\"onSubmit(f)\">\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <!--  [ngClass]=\"{has-error: failMessage==='true'}\" -->\n            <div class=\"form-group\" [class.has-error]=\"fName.errors\">\n              <label for=\"FirstName\">First Name:</label>\n              <input #fName=\"ngModel\" required [(ngModel)]=\"employee.FirstName\" class=\"form-control\" id=\"FirstName\"\n                type=\"text\" name=\"FirstName\" />\n              <span *ngIf=\"fName.errors\" class=\"help-block\">First Name is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\" [class.has-error]=\"lName.errors\">\n              <label for=\"LastName\">Last Name:</label>\n              <input #lName=\"ngModel\" required [(ngModel)]=\"employee.LastName\" class=\"form-control\" id=\"LastName\" type=\"text\"\n                name=\"LastName\" />\n              <span *ngIf=\"lName.errors\" class=\"help-block\">Last Name is Required</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\" [class.has-error]=\"Position.errors\">\n              <label for=\"Position\">Position:</label>\n              <select #Position=\"ngModel\" [(ngModel)]=\"employee.Position._id\" class=\"form-control\" id=\"Position\" name=\"Position\">\n                <option *ngFor=\"let pos of positions\" [value]=\"pos._id\">{{pos.PositionName}}</option>\n              </select>\n              <span *ngIf=\"Position.errors\" class=\"help-block\">Position is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\" [class.has-error]=\"Salary.errors\">\n              <label for=\"SalaryBonus\">Salary Bonus</label>\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">$</span>\n                <input #Salary=\"ngModel\" required type=\"number\" [(ngModel)]=\"employee.SalaryBonus\" class=\"form-control\"\n                  id=\"SalaryBonus\" type=\"text\" name=\"SalaryBonus\" />\n              </div>\n              <span *ngIf=\"Salary.errors && Salary.errors.required\" class=\"help-block\">Salary bonus is Required</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"Street.errors\">\n              <label for=\"AddressStreet\">Address (Street):</label>\n              <input #Street=\"ngModel\" required [(ngModel)]=\"employee.AddressStreet\" class=\"form-control\" id=\"AddressStreet\"\n                type=\"text\" name=\"AddressStreet\" />\n                <span *ngIf=\"Street.errors\" class=\"help-block\">Address is Required</span>\n            </div>        \n          </div>\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"City.errors\">\n              <label for=\"AddressCity\">Address (City):</label>\n              <input #City=\"ngModel\" required [(ngModel)]=\"employee.AddressCity\" class=\"form-control\" id=\"AddressCity\"\n                type=\"text\" name=\"AddressCity\" />\n              <span *ngIf=\"City.errors\" class=\"help-block\">Address city is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"State.errors\">\n              <label for=\"AddressState\">Address (State):</label>\n              <input #State=\"ngModel\" required [(ngModel)]=\"employee.AddressState\" class=\"form-control\" id=\"AddressState\"\n                type=\"text\" name=\"AddressState\" />\n              <span *ngIf=\"State.errors\" class=\"help-block\">Address state is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"ZipCode.errors\">\n              <label for=\"AddressZip\">Address (Zip Code):</label>\n              <input #ZipCode=\"ngModel\" required [(ngModel)]=\"employee.AddressZip\" class=\"form-control\" id=\"AddressZip\"\n                type=\"text\" name=\"AddressZip\" />\n                <span *ngIf=\"ZipCode.errors\" class=\"help-block\">Address zip code is Required</span>\n              </div>\n           </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"PhoneNum.errors\">\n              <label for=\"PhoneNum\">Phone Number:</label>\n              <input pattern=\"\\+?[ ]*[1-9]?[ ]*\\-?[ ]*\\(?[ ]*[1-9][ ]*(\\d[ ]*){2}\\)?[ ]*\\-?[ ]*(\\d[ ]*){3}-[ ]*(\\d[ ]*){4}\" #PhoneNum=\"ngModel\" required [(ngModel)]=\"employee.PhoneNum\" class=\"form-control\" id=\"PhoneNum\"\n                type=\"text\" name=\"PhoneNum\" />\n                <span *ngIf=\"PhoneNum.errors\" class=\"help-block\">Phone number is Required</span>          \n              </div>\n            </div>\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"Extension.errors\">\n              <label for=\"Extension\">Extension:</label>\n              <input #Extension=\"ngModel\" required [(ngModel)]=\"employee.Extension\" class=\"form-control\" id=\"Extension\"\n                type=\"text\" name=\"Extension\" />\n                <span *ngIf=\"Extension.errors\" class=\"help-block\">Extension is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\" [class.has-error]=\"HireDate.errors\">\n              <label for=\"HireDate\">Hire Date:</label>\n              <input #HireDate=\"ngModel\" [(ngModel)]=\"employee.HireDate\" class=\"form-control\" id=\"HireDate\"\n                name=\"HireDate\" type=\"text\" value=\"HireDate\" readonly />\n                <span *ngIf=\"HireDate.errors\" class=\"help-block\">Hire Date is Required</span>\n              </div>\n            </div>\n        </div>\n        <hr />\n        <a routerLink=\"/employees\" class=\"btn btn-warning pull-left\">Return to Employee List</a>\n        <input [disabled]=\"f.invalid\" type=\"submit\" class=\"btn btn-primary pull-right\" value=\"Update Employee\" />\n        <br />\n        <br />\n      </form>\n    </div>\n  </div>\n  <br />\n  <div *ngIf=\"successMessage\" class=\"alert alert-success\">\n    <strong>Success!</strong> First Name Last Name's information was successfully saved.\n  </div>\n  <div *ngIf=\"failMessage\" class=\"alert alert-danger\">\n    <strong>Error!</strong> First Name Last Name's information could not be saved.\n  </div>\n</div>\n<br /><br />\n<app-footer></app-footer>"
+module.exports = "<app-nav></app-nav>\n<div class=\"center\">\n  <h2>Employee: </h2>\n  <p class=\"lead\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non odio sed eros tristique bibendum.</p>\n</div>\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <form #f='ngForm' (ngSubmit)=\"onSubmit(f)\">\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\" [class.has-error]=\"fName.errors\">\n              <label for=\"FirstName\">First Name:</label>\n              <input #fName=\"ngModel\" required [(ngModel)]=\"employee.FirstName\" class=\"form-control\" id=\"FirstName\" type=\"text\" name=\"FirstName\" />\n              <span *ngIf=\"fName.errors\" class=\"help-block\">First Name is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\" [class.has-error]=\"lName.errors\">\n              <label for=\"LastName\">Last Name:</label>\n              <input #lName=\"ngModel\" required [(ngModel)]=\"employee.LastName\" class=\"form-control\" id=\"LastName\" type=\"text\" name=\"LastName\" />\n              <span *ngIf=\"lName.errors\" class=\"help-block\">Last Name is Required</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <div class=\"form-group\" [class.has-error]=\"Position.errors\">\n              <label for=\"Position\">Position:</label>\n              <select #Position=\"ngModel\" [(ngModel)]=\"positions\" class=\"form-control\" id=\"Position\" name=\"Position\">\n                <option *ngFor=\"let pos of positions\" [value]=\"pos._id\">{{pos.PositionName}}</option>\n              </select>\n              <span *ngIf=\"Position.errors\" class=\"help-block\">Position is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\" [class.has-error]=\"Salary.errors\">\n              <label for=\"SalaryBonus\">Salary Bonus</label>\n              <div class=\"input-group\">\n                <span class=\"input-group-addon\">$</span>\n                <input #Salary=\"ngModel\" required type=\"number\" [(ngModel)]=\"employee.SalaryBonus\" class=\"form-control\"\n                  id=\"SalaryBonus\" type=\"text\" name=\"SalaryBonus\" />\n              </div>\n              <span *ngIf=\"Salary.errors && Salary.errors.required\" class=\"help-block\">Salary bonus is Required</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"Street.errors\">\n              <label for=\"AddressStreet\">Address (Street):</label>\n              <input #Street=\"ngModel\" required [(ngModel)]=\"employee.AddressStreet\" class=\"form-control\" id=\"AddressStreet\"\n                type=\"text\" name=\"AddressStreet\" />\n                <span *ngIf=\"Street.errors\" class=\"help-block\">Address is Required</span>\n            </div>        \n          </div>\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"City.errors\">\n              <label for=\"AddressCity\">Address (City):</label>\n              <input #City=\"ngModel\" required [(ngModel)]=\"employee.AddressCity\" class=\"form-control\" id=\"AddressCity\"\n                type=\"text\" name=\"AddressCity\" />\n              <span *ngIf=\"City.errors\" class=\"help-block\">Address city is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"State.errors\">\n              <label for=\"AddressState\">Address (State):</label>\n              <input #State=\"ngModel\" required [(ngModel)]=\"employee.AddressState\" class=\"form-control\" id=\"AddressState\"\n                type=\"text\" name=\"AddressState\" />\n              <span *ngIf=\"State.errors\" class=\"help-block\">Address state is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"ZipCode.errors\">\n              <label for=\"AddressZip\">Address (Zip Code):</label>\n              <input #ZipCode=\"ngModel\" required [(ngModel)]=\"employee.AddressZip\" class=\"form-control\" id=\"AddressZip\"\n                type=\"text\" name=\"AddressZip\" />\n                <span *ngIf=\"ZipCode.errors\" class=\"help-block\">Address zip code is Required</span>\n              </div>\n           </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"PhoneNum.errors\">\n              <label for=\"PhoneNum\">Phone Number:</label>\n              <input pattern=\"\\+?[ ]*[1-9]?[ ]*\\-?[ ]*\\(?[ ]*[1-9][ ]*(\\d[ ]*){2}\\)?[ ]*\\-?[ ]*(\\d[ ]*){3}-[ ]*(\\d[ ]*){4}\" #PhoneNum=\"ngModel\" required [(ngModel)]=\"employee.PhoneNum\" class=\"form-control\" id=\"PhoneNum\"\n                type=\"text\" name=\"PhoneNum\" />\n                <span *ngIf=\"PhoneNum.errors\" class=\"help-block\">Phone number is Required</span>          \n              </div>\n            </div>\n          <div class=\"col-md-3\">\n            <div class=\"form-group\" [class.has-error]=\"Extension.errors\">\n              <label for=\"Extension\">Extension:</label>\n              <input #Extension=\"ngModel\" required [(ngModel)]=\"employee.Extension\" class=\"form-control\" id=\"Extension\"\n                type=\"text\" name=\"Extension\" />\n                <span *ngIf=\"Extension.errors\" class=\"help-block\">Extension is Required</span>\n            </div>\n          </div>\n          <div class=\"col-md-6\">\n            <div class=\"form-group\" [class.has-error]=\"HireDate.errors\">\n              <label for=\"HireDate\">Hire Date:</label>\n              <input #HireDate=\"ngModel\" [(ngModel)]=\"employee.HireDate\" class=\"form-control\" id=\"HireDate\"\n                name=\"HireDate\" type=\"text\" value=\"HireDate\" readonly />\n                <span *ngIf=\"HireDate.errors\" class=\"help-block\">Hire Date is Required</span>\n              </div>\n            </div>\n        </div>\n        <hr />\n        <a routerLink=\"/employees\" class=\"btn btn-warning pull-left\">Return to Employee List</a>\n        <input [disabled]=\"f.invalid\" type=\"submit\" class=\"btn btn-primary pull-right\" value=\"Update Employee\" />\n        <br />\n        <br />\n      </form>\n    </div>\n  </div>\n  <br />\n  <div *ngIf=\"successMessage\" class=\"alert alert-success\">\n    <strong>Success!</strong> First Name Last Name's information was successfully saved.\n  </div>\n  <div *ngIf=\"failMessage\" class=\"alert alert-danger\">\n    <strong>Error!</strong> First Name Last Name's information could not be saved.\n  </div>\n</div>\n<br /><br />\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -308,9 +328,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmployeeComponent", function() { return EmployeeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _employee_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./employee.service */ "./src/app/employee.service.ts");
-/* harmony import */ var _position_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./position.service */ "./src/app/position.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _employee_raw__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./employee-raw */ "./src/app/employee-raw.ts");
+/* harmony import */ var _employee_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./employee.service */ "./src/app/employee.service.ts");
+/* harmony import */ var _position_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./position.service */ "./src/app/position.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
@@ -324,8 +346,7 @@ var EmployeeComponent = /** @class */ (function () {
     }
     EmployeeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.successMessage = false;
-        this.failMessage = false;
+        this.employee = new _employee_raw__WEBPACK_IMPORTED_MODULE_2__["EmployeeRaw"]();
         this.paramSubsctiption = this.route.params.subscribe(function (params) {
             _this.employeeSubscription = _this.m.getEmployee(params['_id']).subscribe(function (emp) {
                 _this.employee = emp[0];
@@ -334,29 +355,38 @@ var EmployeeComponent = /** @class */ (function () {
                 });
             }); // (+) converts string 'id' to a number
             //In a real app: dispatch action to load the details here.
+            _this.successMessage = false;
+            _this.failMessage = false;
         });
     };
     EmployeeComponent.prototype.onSubmit = function (f) {
         var _this = this;
-        console.log("heree", this.employee);
-        this.saveEmployeeSubscription = this.m.saveEmployee(this.employee).subscribe(function () {
+        this.saveEmployeeSubscription = this.m.saveEmployee(this.employee).subscribe(function (okay) {
             _this.successMessage = true;
             console.log("success");
             setTimeout(function () {
-                _this.failMessage = true;
+                _this.successMessage = false;
+            }, 2500);
+        }, function (error) {
+            _this.failMessage = true;
+            console.log("Error occur: ", error);
+            setTimeout(function () {
+                _this.failMessage = false;
             }, 2500);
         });
     };
-    // this.validations_form = this.formBuilder.group({
-    //   username: new FormControl('', Validators.required),
-    //   email: new FormControl('', Validators.compose([
-    //     Validators.required,
-    //     Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    //   ]))
-    // });
     EmployeeComponent.prototype.ngOnDestroy = function () {
         if (this.paramSubsctiption) {
             this.paramSubsctiption.unsubscribe();
+        }
+        if (this.employeeSubscription) {
+            this.employeeSubscription.unsubscribe();
+        }
+        if (this.getPositionsSubcription) {
+            this.getPositionsSubcription.unsubscribe();
+        }
+        if (this.saveEmployeeSubscription) {
+            this.saveEmployeeSubscription.unsubscribe();
         }
     };
     EmployeeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -365,9 +395,9 @@ var EmployeeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./employee.component.html */ "./src/app/employee.component.html"),
             styles: [__webpack_require__(/*! ./employee.component.css */ "./src/app/employee.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_employee_service__WEBPACK_IMPORTED_MODULE_2__["EmployeeService"],
-            _position_service__WEBPACK_IMPORTED_MODULE_3__["PositionService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_employee_service__WEBPACK_IMPORTED_MODULE_3__["EmployeeService"],
+            _position_service__WEBPACK_IMPORTED_MODULE_4__["PositionService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]])
     ], EmployeeComponent);
     return EmployeeComponent;
 }());
@@ -404,8 +434,8 @@ var EmployeeService = /** @class */ (function () {
     EmployeeService.prototype.saveEmployee = function (employee) {
         return this.http.put(this.url + "employee/" + employee._id, employee);
     };
-    EmployeeService.prototype.getEmployee = function (id) {
-        return this.http.get(this.url + "employee-raw/" + id);
+    EmployeeService.prototype.getEmployee = function (_id) {
+        return this.http.get(this.url + "employee-raw/" + _id);
     };
     EmployeeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -767,6 +797,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _position_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./position.service */ "./src/app/position.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _position__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./position */ "./src/app/position.ts");
+
 
 
 
@@ -778,6 +810,7 @@ var PositionComponent = /** @class */ (function () {
     }
     PositionComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.position = new _position__WEBPACK_IMPORTED_MODULE_4__["Position"]();
         this.successMessage = false;
         this.failMessage = false;
         this.paramSubsctiption = this.route.params.subscribe(function (params) {
@@ -790,13 +823,30 @@ var PositionComponent = /** @class */ (function () {
     PositionComponent.prototype.onSubmit = function (f) {
         var _this = this;
         console.log("heree", this.position);
-        this.savePositionSubscription = this.p.savePosition(this.position).subscribe(function () {
+        this.savePositionSubscription = this.p.savePosition(this.position).subscribe(function (okay) {
             _this.successMessage = true;
             console.log("success");
             setTimeout(function () {
-                _this.failMessage = true;
+                _this.successMessage = false;
+            }, 2500);
+        }, function (error) {
+            _this.failMessage = true;
+            console.log("Error occur: ", error);
+            setTimeout(function () {
+                _this.failMessage = false;
             }, 2500);
         });
+    };
+    PositionComponent.prototype.ngOnDestroy = function () {
+        if (this.paramSubsctiption) {
+            this.paramSubsctiption.unsubscribe();
+        }
+        if (this.positionSubscription) {
+            this.positionSubscription.unsubscribe();
+        }
+        if (this.savePositionSubscription) {
+            this.savePositionSubscription.unsubscribe();
+        }
     };
     PositionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -851,6 +901,26 @@ var PositionService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], PositionService);
     return PositionService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/position.ts":
+/*!*****************************!*\
+  !*** ./src/app/position.ts ***!
+  \*****************************/
+/*! exports provided: Position */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Position", function() { return Position; });
+var Position = /** @class */ (function () {
+    function Position(obj) {
+    }
+    return Position;
 }());
 
 

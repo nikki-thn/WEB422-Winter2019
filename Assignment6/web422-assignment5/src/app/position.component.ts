@@ -24,6 +24,7 @@ export class PositionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.position = new Position();
     this.successMessage = false;
     this.failMessage = false; 
 
