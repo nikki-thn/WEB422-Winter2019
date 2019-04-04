@@ -27,7 +27,7 @@
           <div class="col-md-6">
             <div class="form-group" [class.has-error]="Position.errors">
               <label for="Position">Position:</label>
-              <select #Position="ngModel" [(ngModel)]="positions" class="form-control" id="Position" name="Position">
+              <select #Position="ngModel" [(ngModel)]="employee.Position" class="form-control" id="Position" name="Position">
                 <option *ngFor="let pos of positions" [value]="pos._id">{{pos.PositionName}}</option>
               </select>
               <span *ngIf="Position.errors" class="help-block">Position is Required</span>
@@ -91,17 +91,17 @@
           <div class="col-md-3">
             <div class="form-group" [class.has-error]="Extension.errors">
               <label for="Extension">Extension:</label>
-              <input #Extension="ngModel" required [(ngModel)]="employee.Extension" class="form-control" id="Extension"
+              <input #Extension="ngModel" required pattern="\d*" [(ngModel)]="employee.Extension" class="form-control" id="Extension"
                 type="text" name="Extension" />
-                <span *ngIf="Extension.errors" class="help-block">Extension is Required</span>
+                <span *ngIf="Extension.errors && Extension.errors.required" class="help-block">Extension is Required</span>
+                <span *ngIf="Extension.errors && Extension.errors.pattern" class="help-block">Number only</span>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group" [class.has-error]="HireDate.errors">
+            <div class="form-group">
               <label for="HireDate">Hire Date:</label>
-              <input #HireDate="ngModel" [(ngModel)]="employee.HireDate" class="form-control" id="HireDate"
-                name="HireDate" type="text" value="HireDate" readonly />
-                <span *ngIf="HireDate.errors" class="help-block">Hire Date is Required</span>
+              <input class="form-control" id="HireDate"
+                name="HireDate" type="text" value="{{employee.HireDate | date : 'longDate'}}" readonly />          
               </div>
             </div>
         </div>

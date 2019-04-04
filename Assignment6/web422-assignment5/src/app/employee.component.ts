@@ -5,7 +5,6 @@ import { EmployeeService } from './employee.service';
 import { PositionService } from './position.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from "@angular/forms";
-import { Employee } from './employee';
 
 @Component({
   selector: 'app-employee',
@@ -41,10 +40,10 @@ export class EmployeeComponent implements OnInit {
         });
       }); // (+) converts string 'id' to a number
       //In a real app: dispatch action to load the details here.
-
+    });
       this.successMessage = false;
       this.failMessage = false; 
-   });
+   
   }
 
   onSubmit(f: NgForm) :void{
